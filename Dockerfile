@@ -8,8 +8,7 @@ ARG TARGETARCH
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y \
         ca-certificates \
-        curl \
-        wget && \
+        curl && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Docker
@@ -28,8 +27,8 @@ RUN mkdir -p /etc/apt/keyrings && \
 # AECH (Amazon ECR Credential Helper)
 ARG AECH_VERSION="0.12.0"
 RUN cd /tmp && \
-    wget --progress=dot:mega "https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/${AECH_VERSION}/linux-${TARGETARCH}/docker-credential-ecr-login" && \
-    wget --progress=dot:mega "https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/${AECH_VERSION}/linux-${TARGETARCH}/docker-credential-ecr-login.sha256" && \
+    curl -fSL -o "docker-credential-ecr-login" "https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/${AECH_VERSION}/linux-${TARGETARCH}/docker-credential-ecr-login" && \
+    curl -fSL -o "docker-credential-ecr-login.sha256" "https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/${AECH_VERSION}/linux-${TARGETARCH}/docker-credential-ecr-login.sha256" && \
     cat "docker-credential-ecr-login.sha256" | sha256sum -c - && \
     chmod +x "./docker-credential-ecr-login" && \
     mv "./docker-credential-ecr-login" "/usr/local/bin/docker-credential-ecr-login" && \

@@ -15,6 +15,8 @@ Published to Docker Hub as [`zappi/image-builder`](https://hub.docker.com/r/zapp
 
 The image runs as a non-root `builder` user (UID/GID `1001`).
 
+System packages (unpinned): `ca-certificates`, `curl`
+
 ## Docker CLI configuration
 
 No `~/.docker/config.json` is baked into the image. It is expected to be provided at runtime — for example, mounted via a Kubernetes ConfigMap.
