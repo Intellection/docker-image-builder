@@ -39,5 +39,6 @@ ARG APP_USER="builder"
 RUN groupadd -g 1001 ${APP_USER} && \
     useradd --system --create-home -u 1001 -g 1001 ${APP_USER}
 
+WORKDIR /home/${APP_USER}
 USER ${APP_USER}:${APP_USER}
 CMD ["/bin/bash"]
