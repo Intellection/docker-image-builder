@@ -1,6 +1,6 @@
 # Docker Image Builder
 
-A purpose-built image for running `docker buildx build` against remote [BuildKit](https://github.com/moby/buildkit) daemons and pushing to Amazon ECR. It carries only what is needed for this role — no Docker Engine daemon, no `git`, no `aws` CLI.
+A purpose-built image for building and pushing container images via remote [BuildKit](https://github.com/moby/buildkit) daemons. It carries only what is needed for this role — no Docker Engine daemon, no `git`, no build toolchains.
 
 Published to Docker Hub as [`zappi/image-builder`](https://hub.docker.com/r/zappi/image-builder). Built for `linux/amd64` and `linux/arm64`.
 
@@ -15,11 +15,11 @@ Published to Docker Hub as [`zappi/image-builder`](https://hub.docker.com/r/zapp
 
 The image runs as a non-root `builder` user (UID/GID `1001`).
 
-System packages (unpinned): `ca-certificates`, `curl`
-
-## Docker CLI configuration
+## Docker CLI Configuration
 
 No `~/.docker/config.json` is baked into the image. It is expected to be provided at runtime — for example, mounted via a Kubernetes ConfigMap.
+
+### AWS ECR Credential Helper Configuration
 
 The config should wire the ECR credential helper for the registries the builder needs to authenticate with:
 
@@ -32,7 +32,7 @@ The config should wire the ECR credential helper for the registries the builder 
 }
 ```
 
-The ECR credential helper (`docker-credential-ecr-login`) is already present in the image. In a Kubernetes context, ECR authentication is handled via IRSA — no static AWS credentials are required.
+The ECR credential helper (`docker-credential-ecr-login`) is already present in the image. It follows the standard [AWS credential chain](https://docs.aws.amazon.com/sdkref/latest/guide/standardized-credentials.html#credentialProviders), so no static credentials need to be baked into the image.
 
 ## Releases
 
