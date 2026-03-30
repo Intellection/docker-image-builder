@@ -8,7 +8,9 @@ ARG TARGETARCH
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y \
         ca-certificates \
-        curl && \
+        curl \
+        git \
+        git-lfs && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Docker
@@ -36,8 +38,8 @@ RUN cd /tmp && \
 
 # Create user
 ARG APP_USER="builder"
-RUN groupadd -g 1001 ${APP_USER} && \
-    useradd --create-home -u 1001 -g 1001 ${APP_USER}
+RUN groupadd -g 65533 ${APP_USER} && \
+    useradd --create-home -u 65533 -g 65533 ${APP_USER}
 
 WORKDIR /home/${APP_USER}
 USER ${APP_USER}:${APP_USER}

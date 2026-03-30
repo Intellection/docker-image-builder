@@ -1,6 +1,6 @@
 # Docker Image Builder
 
-A purpose-built image for building and pushing container images via remote [BuildKit](https://github.com/moby/buildkit) daemons. It carries only what is needed for this role — no Docker Engine daemon, no `git`, no build toolchains.
+A purpose-built image for building and pushing container images via remote [BuildKit](https://github.com/moby/buildkit) daemons. It carries only what is needed for this role — no Docker Engine daemon and no general build toolchains.
 
 Published to Docker Hub as [`zappi/image-builder`](https://hub.docker.com/r/zappi/image-builder). Built for `linux/amd64` and `linux/arm64`.
 
@@ -9,11 +9,15 @@ Published to Docker Hub as [`zappi/image-builder`](https://hub.docker.com/r/zapp
 | Component | Version |
 |-----------|---------|
 | Base image | Ubuntu 24.04 LTS |
+| [Git](https://git-scm.com/) | distro package |
+| [Git LFS](https://git-lfs.com/) | distro package |
 | [Docker CLI](https://github.com/docker/cli) | 29.3.0 |
 | [Docker Buildx plugin](https://github.com/docker/buildx) | 0.31.1 |
 | [Amazon ECR Credential Helper](https://github.com/awslabs/amazon-ecr-credential-helper) | 0.12.0 |
 
-The image runs as a non-root `builder` user (UID/GID `1001`).
+`git` and `git-lfs` are included as part of the builder toolchain.
+
+The image runs as a non-root `builder` user (UID/GID `65533`).
 
 ## Docker CLI Configuration
 
@@ -42,4 +46,6 @@ Images are tagged and pushed to Docker Hub on every [GitHub Release](https://git
 
 - [docker/cli](https://github.com/docker/cli)
 - [docker/buildx](https://github.com/docker/buildx)
+- [git/git](https://github.com/git/git)
+- [git-lfs/git-lfs](https://github.com/git-lfs/git-lfs)
 - [awslabs/amazon-ecr-credential-helper](https://github.com/awslabs/amazon-ecr-credential-helper)
