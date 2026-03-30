@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+* Install `git` and `git-lfs`.
+* Set up `builder` user and group with UID and GID of `65533`.
+
 ## 1.0.0
 
 * Use Ubuntu 24.04 (LTS) as upstream base image.
