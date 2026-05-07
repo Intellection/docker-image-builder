@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+* Install OpenSSH client tools to support SSH agent forwarding workflows.
+
 ## 1.1.0
 
 * Install `git` and `git-lfs`.
