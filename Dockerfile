@@ -10,7 +10,8 @@ RUN apt-get update -y && \
         ca-certificates \
         curl \
         git \
-        git-lfs && \
+        git-lfs \
+        openssh-client && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Docker

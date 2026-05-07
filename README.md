@@ -11,11 +11,13 @@ Published to Docker Hub as [`zappi/image-builder`](https://hub.docker.com/r/zapp
 | Base image | Ubuntu 24.04 LTS |
 | [Git](https://git-scm.com/) | distro package |
 | [Git LFS](https://git-lfs.com/) | distro package |
+| [OpenSSH client](https://www.openssh.com/) | distro package |
 | [Docker CLI](https://github.com/docker/cli) | 29.3.0 |
 | [Docker Buildx plugin](https://github.com/docker/buildx) | 0.31.1 |
 | [Amazon ECR Credential Helper](https://github.com/awslabs/amazon-ecr-credential-helper) | 0.12.0 |
 
-`git` and `git-lfs` are included as part of the builder toolchain.
+`git`, `git-lfs` and OpenSSH client tools are included as part of the
+builder toolchain.
 
 The image runs as a non-root `builder` user (UID/GID `65533`).
 
